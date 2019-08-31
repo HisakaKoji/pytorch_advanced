@@ -16,7 +16,7 @@ def get_IMDb_DataLoaders_and_TEXT(max_length=256, batch_size=24):
     """IMDbのDataLoaderとTEXTオブジェクトを取得する。 """
 
     # 訓練データのtsvファイルを作成します
-    f = open('./data/IMDb_train.tsv', 'w')
+    f = open('./data/text_train.tsv', 'w')
 
     path = './data/aclImdb/train/pos/'
     for fname in glob.glob(os.path.join(path, '*.txt')):
@@ -43,7 +43,7 @@ def get_IMDb_DataLoaders_and_TEXT(max_length=256, batch_size=24):
     f.close()
 
    # テストデータの作成
-    f = open('./data/IMDb_test.tsv', 'w')
+    f = open('./data/text_test.tsv', 'w')
 
     path = './data/aclImdb/test/pos/'
     for fname in glob.glob(os.path.join(path, '*.txt')):
@@ -104,8 +104,8 @@ def get_IMDb_DataLoaders_and_TEXT(max_length=256, batch_size=24):
 
     # フォルダ「data」から各tsvファイルを読み込みます
     train_val_ds, test_ds = torchtext.data.TabularDataset.splits(
-        path='./data/', train='IMDb_train.tsv',
-        test='IMDb_test.tsv', format='tsv',
+        path='./data/', train='text_train.tsv',
+        test='text_test.tsv', format='tsv',
         fields=[('Text', TEXT), ('Label', LABEL)])
 
     # torchtext.data.Datasetのsplit関数で訓練データとvalidationデータを分ける
